@@ -4,3 +4,7 @@ output/
 *.exe
 *.spec
 __pycache__/
+adminer.css
+adminer-dark.css
+adminer-plugins
+adminer.php

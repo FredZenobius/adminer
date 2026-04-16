@@ -2,7 +2,7 @@
 ; InnoSetup 6.x
 
 #define MyAppName "Adminer"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.01"
 #define MyAppExeName "adminer.exe"
 #define PhpDir "..\\"
 
@@ -12,6 +12,7 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
+AppComments=v1.01: 트레이 메뉴에 '브라우저로 열기' 기능 추가
 OutputDir=output
 OutputBaseFilename=AdminerSetup
 Compression=lzma2/ultra64
@@ -29,6 +30,7 @@ Name: "korean"; MessagesFile: "compiler:Languages\Korean.isl"
 Source: "dist\adminer.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "adminer.php"; DestDir: "{app}"; Flags: ignoreversion
 Source: "adminer.css"; DestDir: "{app}"; Flags: ignoreversion
+Source: "router.php"; DestDir: "{app}"; Flags: ignoreversion
 Source: "adminer.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 ; PHP 최소 구성 (코어)

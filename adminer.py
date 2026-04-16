@@ -30,6 +30,11 @@ def show_error(msg: str):
 
 if getattr(sys, "frozen", False):
     APP_DIR = os.path.dirname(sys.executable)
+    # dist 폴더처럼 PHP 파일이 없는 위치에서 실행 시 상위 폴더에서 탐색 (개발/테스트용)
+    if not os.path.exists(os.path.join(APP_DIR, "adminer.php")):
+        parent = os.path.dirname(APP_DIR)
+        if os.path.exists(os.path.join(parent, "adminer.php")):
+            APP_DIR = parent
 else:
     APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -38,6 +43,7 @@ _php_sub = os.path.join(APP_DIR, "php", "php.exe")
 _php_parent = os.path.join(APP_DIR, "..", "php.exe")
 PHP_PATH = _php_sub if os.path.exists(_php_sub) else _php_parent
 ADMINER_PATH = os.path.join(APP_DIR, "adminer.php")
+ROUTER_PATH = os.path.join(APP_DIR, "router.php")
 ICON_FILE = os.path.join(APP_DIR, "adminer.ico")
 
 BIND_HOST = "0.0.0.0"
@@ -116,7 +122,7 @@ def create_job_object():
 # ============================================================
 def start_php(port: int) -> subprocess.Popen:
     proc = subprocess.Popen(
-        [PHP_PATH, "-S", f"{BIND_HOST}:{port}", "adminer.php"],
+        [PHP_PATH, "-S", f"{BIND_HOST}:{port}", "router.php"],
         cwd=APP_DIR,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
@@ -210,6 +216,9 @@ if __name__ == "__main__":
         sys.exit(1)
     if not os.path.exists(ADMINER_PATH):
         show_error(f"adminer.php를 찾을 수 없습니다.\n경로: {ADMINER_PATH}")
+        sys.exit(1)
+    if not os.path.exists(ROUTER_PATH):
+        show_error(f"router.php를 찾을 수 없습니다.\n경로: {ROUTER_PATH}")
         sys.exit(1)
 
     create_job_object()
