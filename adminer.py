@@ -169,6 +169,10 @@ def run_tray(port: int):
         except Exception:
             pass
 
+    def open_browser(icon, item):
+        import webbrowser
+        webbrowser.open(url)
+
     def restart(icon, item):
         global php_process
         stop_php()
@@ -181,6 +185,7 @@ def run_tray(port: int):
     menu = pystray.Menu(
         pystray.MenuItem(f"Adminer - {url}", None, enabled=False),
         pystray.Menu.SEPARATOR,
+        pystray.MenuItem("브라우저로 열기", open_browser),
         pystray.MenuItem("URL 복사", copy_url),
         pystray.MenuItem("서버 재시작", restart),
         pystray.Menu.SEPARATOR,
