@@ -109,7 +109,12 @@ Adminer에서 지원하는 모든 DB를 사용할 수 있습니다:
 - MS SQL
 - Oracle
 
-(php.ini에서 해당 확장을 활성화해야 합니다)
+## 시스템 요구사항
+
+**Microsoft Visual C++ 재배포 가능 패키지 2015-2022 (x64)** 가 필요합니다.  
+Windows 10/11에는 대부분 기본 설치되어 있으나, 없을 경우 아래에서 설치하세요.
+
+- 다운로드: https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 ## 라이선스
 

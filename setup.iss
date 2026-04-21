@@ -2,7 +2,7 @@
 ; InnoSetup 6.x
 
 #define MyAppName "Adminer"
-#define MyAppVersion "1.01"
+#define MyAppVersion "1.10"
 #define MyAppExeName "adminer.exe"
 #define PhpDir "..\\"
 
@@ -12,7 +12,7 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-AppComments=v1.01: 트레이 메뉴에 '브라우저로 열기' 기능 추가
+AppComments=v1.10: PHP 확장 의존성 추가 (mbstring, mysqli, pdo_mysql, sqlite3 등)
 OutputDir=output
 OutputBaseFilename=AdminerSetup
 Compression=lzma2/ultra64
@@ -46,6 +46,12 @@ Source: "{#PhpDir}libpq.dll"; DestDir: "{app}\php"; Flags: ignoreversion
 Source: "{#PhpDir}libsasl.dll"; DestDir: "{app}\php"; Flags: ignoreversion
 Source: "{#PhpDir}libssh2.dll"; DestDir: "{app}\php"; Flags: ignoreversion
 Source: "{#PhpDir}nghttp2.dll"; DestDir: "{app}\php"; Flags: ignoreversion
+
+; ICU 유니코드 라이브러리 (mbstring 필수 의존성)
+Source: "{#PhpDir}icudt75.dll"; DestDir: "{app}\php"; Flags: ignoreversion
+Source: "{#PhpDir}icuin75.dll"; DestDir: "{app}\php"; Flags: ignoreversion
+Source: "{#PhpDir}icuio75.dll"; DestDir: "{app}\php"; Flags: ignoreversion
+Source: "{#PhpDir}icuuc75.dll"; DestDir: "{app}\php"; Flags: ignoreversion
 
 ; PHP 확장 (Adminer에서 사용하는 것만)
 Source: "{#PhpDir}ext\php_mbstring.dll"; DestDir: "{app}\php\ext"; Flags: ignoreversion
